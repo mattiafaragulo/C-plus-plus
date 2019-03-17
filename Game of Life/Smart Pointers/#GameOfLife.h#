@@ -1,0 +1,63 @@
+#include <iostream>
+#include "GameOfLife.h"
+
+GameOfLife::GameOfLife()
+{
+  for (int i = 0; i < 5; i++)
+    {
+      std::unique_ptr<char[]> temp_ptr(new char[5]);
+      for (int j = 0; j < 5; j++) {
+	temp_ptr[j] = '.';
+	if((i == 1 && j == 2) || (i == 3 && j == 2) || (i == 2 && j == 2) ) {
+	  temp_ptr[j] = '*';
+	}
+      }
+      board[i] = move(temp_ptr);
+    }
+}
+
+int GameOfLife::near(int i, int j)
+{
+  int count = 0;
+  if(i>0 && board[i-1][j] == '*') count++;
+  if(i>0 && j<4 && board[i-1][j+1] == '*') count++;
+  if(j<4 && board[i][j+1] == '*') count++;
+  if(i<4 && board[i+1][j] == '*') count++;
+  if(i<4 && j>0 && board[i+1][j-1] == '*') count++;
+  if(j>0 && board[i][j-1] == '*') count++;
+  if(i>0 && j>0 board[i-1][j-1] == '*') count++;
+    
+}
+
+void GameOfLife::nextGeneration();
+{
+  for(int i = 0; i < 5; ++i){
+    for(int j = 0; j < 5; ++j) {
+      int n = near(i,j);
+      if(boar[i][j]=='*') {
+	boardRes[i][j] = ( n==2 || n==3) ? '*':'.';
+      }
+      else{
+	boardRes[i][j] = (v==3) ? '*' : '.';
+      }
+    }
+  }
+  tmp = board; board = boardRes; boardRes = tmp;
+}
+
+void GameOfLife::view();
+{
+  for (int i = 0; i < 5; i++)
+    {
+      for (int j = 0; j < 5; j++)
+	std::cout << ptr[i][j] << " ";
+      std::cout << "\n";
+    }
+}
+
+int main()
+{
+    
+
+   
+}
