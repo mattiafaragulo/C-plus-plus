@@ -116,7 +116,7 @@ int main()
         cout<<g <<" Generation"<<'\n';
         view(board);
         
-    } //while(c == '\n');
+    }
     
     
     
