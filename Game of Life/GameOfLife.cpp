@@ -20,11 +20,11 @@ int near(char board [r][c], int i, int j)
 {
     int count = 0;
     if(i>0 && board[i-1][j] == '*') count++;
-    if(i>0 && j<4 && board[i-1][j+1] == '*') count++;
-    if(j<4 && board[i][j+1] == '*') count++;
-    if(i<4 && j<4 && board[i+1][j+1] == '*') count++;
-    if(i<4 && board[i+1][j] == '*') count++;
-    if(i<4 && j>0 && board[i+1][j-1] == '*') count++;
+    if(i>0 && j<c && board[i-1][j+1] == '*') count++;
+    if(j<c && board[i][j+1] == '*') count++;
+    if(i<r && j<c && board[i+1][j+1] == '*') count++;
+    if(i<r && board[i+1][j] == '*') count++;
+    if(i<r && j>0 && board[i+1][j-1] == '*') count++;
     if(j>0 && board[i][j-1] == '*') count++;
     if(i>0 && j>0 && board[i-1][j-1] == '*') count++;
     return count;
@@ -55,6 +55,7 @@ void view(char board [r][c])
 void nextGeneration(char board [r][c])
 {
     char boardRes [r][c];
+    int count;
     for (int i = 0; i < r; i++)
     {
         for (int j = 0; j < c; j++) {
@@ -97,7 +98,12 @@ int main()
             board[i][j] = '.';
         }
     }
-    addLife(board,1,2); addLife(board,2,2); addLife(board,3,2);
+    /*
+     addLife(board,1,2); addLife(board,2,2); addLife(board,3,2);
+     */
+    //First configuration
+    addLife(board,2,1); addLife(board,1,0); addLife(board,1,2); addLife(board,2,2);
+    addLife(board,0,2); //Glider Pattern
     cout<<"This is the first configuration: " <<'\n';
     view(board);
     cout<<'\n';
